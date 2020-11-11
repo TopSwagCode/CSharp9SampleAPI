@@ -1,24 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebApplication1.Services;
-using FluentValidation;
+using ProductAPI.Services;
 using FluentValidation.AspNetCore;
-using WebApplication1.API.Models;
-using WebApplication1.Databases;
+using ProductAPI.API.Models;
+using ProductAPI.Databases;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
-namespace WebApplication1
+namespace ProductAPI
 {
     public class Startup
     {
@@ -33,6 +26,8 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ProductService>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers(options =>
             {
@@ -58,7 +53,7 @@ namespace WebApplication1
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductAPI v1"));
             }
 
             app.UseHttpsRedirection();

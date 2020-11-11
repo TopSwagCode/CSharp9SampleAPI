@@ -1,13 +1,8 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace WebApplication1.API.Models
+namespace ProductAPI.API.Models
 {
-	public record ProductRequest(string Name, string Description, decimal Price);
+    public record ProductRequest(string Name, string Description, decimal Price);
 
 	public class ProductValidator : AbstractValidator<ProductRequest>
 	{

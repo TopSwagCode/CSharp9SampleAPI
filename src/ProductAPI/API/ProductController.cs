@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.API.Models;
-using WebApplication1.Services;
+using ProductAPI.API.Models;
+using ProductAPI.Services;
 
-namespace WebApplication1.Controllers
+namespace ProductAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -15,17 +16,23 @@ namespace WebApplication1.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly ProductService _productService;
+        private readonly IMapper _mapper;
 
-        public ProductController(ILogger<ProductController> logger, ProductService productService)
+        public ProductController(ILogger<ProductController> logger, ProductService productService, IMapper mapper)
         {
             _logger = logger;
             _productService = productService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IEnumerable<ProductResponse> Get()
         {
-            return _productService.GetProducts().Select(product => new ProductResponse(product.Uid, product.Name, product.Description, product.Price));
+            var products = _productService.GetProducts();
+
+            var productsResponse = _mapper.Map<IEnumerable<ProductResponse>>(products);
+
+            return productsResponse;
         }
 
         [HttpGet("{uid}")]
@@ -33,9 +40,9 @@ namespace WebApplication1.Controllers
         {
             var product = _productService.GetProductByUid(uid);
 
-            var (_, name, description, price) = product;
+            var productResponse = _mapper.Map<ProductResponse>(product);
 
-            return new ProductResponse(uid, name, description, price);
+            return productResponse;
         }
 
         [HttpPost]

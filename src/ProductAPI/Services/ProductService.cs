@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Databases;
-using WebApplication1.Databases.Models;
-using WebApplication1.Services.Models;
+using ProductAPI.Databases;
+using ProductAPI.Databases.Models;
+using ProductAPI.Services.Models;
 
-namespace WebApplication1.Services
+namespace ProductAPI.Services
 {
     public class ProductService
     {

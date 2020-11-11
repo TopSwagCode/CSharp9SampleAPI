@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Databases.Models;
+using ProductAPI.Databases.Models;
 
-namespace WebApplication1.Databases
+namespace ProductAPI.Databases
 {
     public class AppDbContext : DbContext
     {
@@ -16,7 +16,7 @@ namespace WebApplication1.Databases
         {
         }
 
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Product> Products { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

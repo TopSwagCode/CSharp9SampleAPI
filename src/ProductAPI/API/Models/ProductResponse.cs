@@ -1,9 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using System;
+using ProductAPI.Services.Models;
 
-namespace WebApplication1.API.Models
+namespace ProductAPI.API.Models
 {
     public record ProductResponse(Guid Uid, string Name, string Description, decimal Price);
+
+
+    public class ProductResponseMappingProfile : Profile
+    {
+        public ProductResponseMappingProfile()
+        {
+            CreateMap<ProductDTO, ProductResponse>();
+        }
+    }
 }

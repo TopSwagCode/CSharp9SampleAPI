@@ -7,9 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Databases;
+using ProductAPI.Databases;
 
-namespace WebApplication1
+namespace ProductAPI
 {
     public class Program
     {
