@@ -1,3 +1,3 @@
 # CSharp9SampleAPI
 
-![thumbnail.png](thumbnail.png)
+![thumbnail.png](thumb.png)
